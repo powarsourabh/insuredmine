@@ -1,0 +1,94 @@
+
+
+
+   <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <a routerLink="/character">Star Wars</a>
+      </div>
+     
+      <div class="navbar-toggle" (click)="toggleNavbar()">
+        &#9776;
+      </div>
+    </div>
+  </nav>
+  
+  <div class="character-list-container">
+    <div class="row-container">
+    
+        <div *ngIf="isLoading" class="loader">Loading...</div>
+
+        <div *ngIf="!isLoading && noDataFound" class="no-data">
+            <p>No data found</p>
+            <button (click)="goBack()">Back to Character List</button>
+          </div>
+     
+
+      <div *ngIf="isLoading" class="loader">Loading...</div>
+
+<div *ngIf="!isLoading && noDataFound" class="no-data">No data found</div>
+
+<div *ngIf="!isLoading && !noDataFound" class="character-list-container">
+  <div class="row-container">
+    <div class="filter-section">
+      <h3>Filters</h3>
+
+      <label for="movieFilter">Movie Name</label>
+      <select id="movieFilter" [(ngModel)]="movieFilter" (change)="applyFilter()">
+        <option value="">All</option>
+        <option *ngFor="let movie of movieOptions" [value]="movie">{{ movie }}</option>
+      </select>
+
+      <label for="speciesFilter">Species</label>
+      <select id="speciesFilter" [(ngModel)]="speciesFilter" (change)="applyFilter()">
+        <option value="">All</option>
+        <option *ngFor="let species of speciesOptions" [value]="species">{{ species }}</option>
+      </select>
+
+      <label for="starshipFilter">Starships</label>
+      <select id="starshipFilter" [(ngModel)]="starshipFilter" (change)="applyFilter()">
+        <option value="">All</option>
+        <option *ngFor="let starships of starshipOptions" [value]="starships">{{ starships }}</option>
+      </select>
+
+      <label for="vehicleFilter">Vehicle Name</label>
+      <select id="vehicleFilter" [(ngModel)]="vehicleFilter" (change)="applyFilter()">
+        <option value="">All</option>
+        <option *ngFor="let vehicle of vehicleOptions" [value]="vehicle">{{ vehicle }}</option>
+      </select>
+
+      <button (click)="applyFilter()">Apply Filter</button>
+    </div>
+
+    <div class="character-list-container">
+      <table class="character-table">
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>Character Name</th>
+            <th>Species</th>
+            <th>Birth Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let character of paginatedCharacters; let i = index" (click)="viewDetails(character)">
+            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td>{{ character.name }}</td>
+            <td>{{ character.species }}</td>
+            <td>{{ character.birth_year }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+  

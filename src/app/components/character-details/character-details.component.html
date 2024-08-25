@@ -1,0 +1,79 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-brand">
+            <a routerLink="/character">Star Wars</a>
+        </div>
+        <div class="navbar-links">
+            <a routerLink="/character">Characters</a>
+            
+        </div>
+        <div class="navbar-toggle" (click)="toggleNavbar()">
+            &#9776;
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="character-detail-container">
+    <div class="character-detail-sidebar">
+
+
+        <h2> <strong>Name:</strong> {{ character.name }}</h2>
+
+        <ul>
+            <li><strong>Species:</strong> {{ species }}</li>
+            <li><strong>Gender:</strong> {{character.gender}}</li>
+            <li><strong>Height:</strong> {{character.height}}</li>
+            <li><strong>Weight:</strong> {{character.mass}}</li>
+
+            <li><strong>HairColor:</strong> {{character.hair_color}}</li>
+            <li><strong>SkinColor:</strong> {{character.skin_color}}</li>
+            <li><strong>EyeColor:</strong> {{character.eye_color}}</li>
+            <li><strong>Created_at:</strong> {{character.created}}</li>
+            <li><strong>Edited_at:</strong> {{character.edited}}</li>
+
+
+
+        
+
+            <li><strong>Birth Year:</strong> {{ character.birth_year }}</li>
+            <li><strong>Homeworld:</strong> {{ character.homeworld }}</li>
+            <!-- Other details here -->
+        </ul>
+    </div>
+    <div class="character-detail-content">
+        <h2>Character Details</h2>
+        <strong style="color: #004d40;">Movies:</strong>
+
+        <ul>
+            <li *ngFor="let movie of movies">
+                {{ movie }}
+            </li>
+        </ul>
+
+
+
+
+        <strong style="color: #004d40;">Starships:</strong>
+
+
+
+        <ul>
+            <li *ngFor="let starship of starships">
+                {{ starships }}
+            </li>
+        </ul>
+
+
+        <Strong style="color:#004d40;">Vehicles</Strong>
+        <ul>
+            <li *ngFor="let vehicle of vehicles">
+                {{ vehicles }}
+            </li>
+        </ul>
+
+
+
+    </div>
+</div>
